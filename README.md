@@ -1,10 +1,20 @@
-# find service file:
+# Creating custom ollama models:
+
+Build your models:
+
+```sh
+ollama create <modelname> -f ./<modelpath>
+```
+
+## Fixing ollama to bind 0.0.0.0
+
+### Find service file:
 
 ```sh
 sudo nvim /etc/systemd/system/ollama.service
 ```
 
-# add env
+### Add env
 
 Environment="OLLAMA_HOST=0.0.0.0:8080"
 
