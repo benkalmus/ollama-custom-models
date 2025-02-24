@@ -1,0 +1,28 @@
+services:
+  ollama:
+    volumes:
+      # This mounts my ollama's existing models directory located in /usr/share/ollama.
+      # Some version of ollama may use ~/.ollama instead
+      # Or you can let docker manage its own volume with `ollama-store:/root/.ollama` ( uncomment below as well)
+      - /usr/share/ollama/.ollama:/root/.ollama
+    container_name: ollama
+    tty: true
+    restart: unless-stopped
+    image: ollama/ollama:latest
+    ports:
+      - 11434:11434
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    #   - OLLAMA_KEEP_ALIVE=24h
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+# uncomment for docker managed volume
+# volumes:
+#   ollama-store:
