@@ -13,7 +13,8 @@ services:
       - 11434:11434
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-    #   - OLLAMA_KEEP_ALIVE=24h
+      - OLLAMA_KEEP_ALIVE=10m
+      # - OLLAMA_MAX_VRAM= (in bytes)
     extra_hosts:
       - "host.docker.internal:host-gateway"
     deploy:
