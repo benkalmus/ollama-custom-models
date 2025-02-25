@@ -1,3 +1,5 @@
+# Running LLMs locally!
+
 # Creating custom ollama models:
 
 Build your models:
@@ -76,4 +78,21 @@ Configure nvidia-container-runtime config:
 sudo nvim /etc/nvidia-container-runtime/config.toml
 # change this to false
 no-cgroups = false
+```
+
+#### NOTE
+
+On Linux, suspending the machine will cause Ollama to not recognize GPU. To fix this run:
+
+```sh
+sudo rmmod nvidia_uvm && sudo modprobe nvidia_uvm
+docker compose restart
+```
+
+Or to automate this, place the `resume-nvidia-from-suspend.sh` to `/usr/lib/systemd/system-sleep/...`:
+
+```sh
+chmod +x resume-nvidia-from-suspend.sh
+sudo chown root:root resume-nvidia-from-suspend.sh
+sudo cp resume-nvidia-from-suspend.sh /usr/lib/systemd/system-sleep/
 ```
