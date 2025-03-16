@@ -14,7 +14,7 @@ services:
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - OLLAMA_KEEP_ALIVE=10m
-      # - OLLAMA_MAX_VRAM= (in bytes)
+      # - OLLAMA_MAX_VRAM=11005853696 # 10.25GB (in bytes)
     extra_hosts:
       - "host.docker.internal:host-gateway"
     deploy:

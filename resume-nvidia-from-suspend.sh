@@ -7,8 +7,8 @@ case $1 in
 # pre)  ;;
 # after resume
 post)
-    rmmod nvidia_uvm &&
-        modprobe nvidia_uvm &&
-        docker compose restart
+    docker ollama stop
+    rmmod nvidia_uvm && modprobe nvidia_uvm
+    docker ollama start
     ;;
 esac

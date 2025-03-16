@@ -1,0 +1,13 @@
+[Unit]
+Description=Fix for suspend: reloads nvidia drivers and restarts ollama container
+After=suspend.target
+; After=network-online.target systemd-suspend.service systemd-hibernate.service systemd-sleep.service
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=-/home/benkalmus/work/ollama/nvidia-suspend-fix.sh
+; ExecStart=cd /home/benkalmus/work/ollama && /usr/bin/docker compose down && /usr/bin/docker compose up -d
+
+[Install]
+WantedBy=multi-user.target sleep.target suspend.target
