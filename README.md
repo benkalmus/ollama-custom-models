@@ -89,18 +89,21 @@ sudo rmmod nvidia_uvm && sudo modprobe nvidia_uvm
 docker compose restart
 ```
 
-Or to automate this, place the `nvidia-suspend-fix.sh` to `/usr/lib/systemd/system-sleep/...`:
+Or to automate this, place the `nvidia-suspend-fix.service` to `/etc/systemd/system`:
 
 ```sh
-chmod +x resume-nvidia-from-suspend.sh
-sudo chown root:root resume-nvidia-from-suspend.sh
-sudo cp nvidia-suspend-fix.sh /lib/systemd/system-sleep/
-
+chmod +x nvidia-suspend-fix.sh
+sudo cp nvidia-suspend-fix.service /etc/systemd/system/
+sudo cp nvidia-suspend-fix.sh /usr/local/bin/
 ```
 
-##### > [!IMPORTANT]
+##### !**IMPORTANT**
 
-Seems like a docker issue with nvidia GPU:
+Update location of this repository (docker compose file) in `nvidia-suspend-fix.sh`
+
+#### > [!IMPORTANT] Docker NVidia Issue fix
+
+Seems like a docker issue with Nvidia GPU:
 
 > [git issue](https://github.com/ollama/ollama/issues/4604)
 
