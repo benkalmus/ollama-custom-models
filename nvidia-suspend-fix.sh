@@ -2,10 +2,7 @@
 
 ## This script stops ollama container, if found, and reloads the nvidia driver
 
-# CONTAINER=$(docker ps --format '{{.Names}}' | grep ollama)
-# if [[ -n $CONTAINER ]]; then
-#     docker stop "$CONTAINER"
-# fi
+# for some reason, the only way this works is if we can cd into the directory containing the docker compose file.
 cd /home/benkalmus/work/ollama || true
 sleep 30
 docker compose down
@@ -14,6 +11,3 @@ rmmod nvidia_uvm
 modprobe nvidia_uvm
 sleep 1
 docker compose up -d
-# if [[ -n $CONTAINER ]]; then
-#     docker start "$CONTAINER"
-# fi
